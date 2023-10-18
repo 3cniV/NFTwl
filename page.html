@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customizable Art Generator</title>
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customizable Art Generator</h1>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <div>
+        <label for="color-picker">Choose Color: </label>
+        <input type="color" id="color-picker">
+    </div>
+    <button id="generate-button">Generate Art</button>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const colorPicker = document.getElementById("color-picker");
+        const generateButton = document.getElementById("generate-button");
+
+        let selectedColor = "#FF0000"; // Default color
+
+        colorPicker.addEventListener("input", (event) => {
+            selectedColor = event.target.value;
+        });
+
+        function draw() {
+            // Customize the drawing logic here
+            ctx.fillStyle = selectedColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function generateArt() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            draw();
+        }
+
+        generateButton.addEventListener("click", generateArt);
+
+        generateArt(); // Initialize with default art
+    </script>
+</body>
+</html>
